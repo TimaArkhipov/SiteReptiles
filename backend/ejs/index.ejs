@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <title>Сайт про животных</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+</head>
+<body> <!--style="background-image: url(back.jpg);
+            background-attachment: fixed;
+            background-size: cover;"
+    img src="196.jpg" class="background"-->
+    <div>
+        <div class="collapsible-menu">
+            <input type="checkbox" id="menu">
+            <label for="menu">Menu</label>
+            <div class="menu-content">
+                <ul class="menu">
+                    <li><a href="../pages/gekkons.html">Гекконы</a></li>
+                    <li><a href="../pages/real_lizard.html">Игуаны</a></li>
+                </ul>
+            </div>
+        </div>
+        <h1 style="position: relative; text-align: center;">Сайт про животных</h1>
+        <h2 style="color:rgb(12, 14, 15);">Игуаны(Игуановые)</h2>
+    </div>
+    <div>
+        <img class="main_photo" src="../images/iguana.jpg" alt="Yellow iguana" >
+            <!--
+            left: 42.5%;
+            sizes="(max-width: 200px) 100px"
+            -->
+        <video class="video_ig" controls="controls">
+            <source src="../media/Filimon.mp4">
+        </video>
+        <h4 style="color:rgb(12, 14, 15);"> Игуановые (лат. <em>Iguanidae</em>) — 
+            семейство относительно крупных ящериц подотряда игуанообразных, приспособившихся к условиям сухого климата. 
+            Относительно недавно произошла ревизия этого семейства, представители которого ранее идентифицировались как 
+            подсемейство Iguaninae. По современной классификации к семейству относятся 8 родов и 25 видов. Игуановые 
+            распространены в Северной, Центральной и Южной Америке, на Антильских, Галапагосских островах и островах Фиджи.
+        </h4>
+        <script>
+            jQuery("document").ready(function($) {
+                var nav = $('.collapsible-menu');
+                $(window).scroll(function(){
+                    if($(this).scrollTop() > 55)
+                        nav.addClass('f-nav');
+                    else
+                        nav.removeClass('f-nav');
+                });
+	        });
+        </script>
+    </div>
+</body>
+</html>
