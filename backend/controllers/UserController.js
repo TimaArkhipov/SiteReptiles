@@ -39,7 +39,7 @@ export const register = async (req, res) => {
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            err_mes: 'failed to register',
+            message: 'failed to register',
         })
     }
 }
@@ -81,7 +81,7 @@ export const login = async (req, res) => {
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            err_mes: 'failed to login',
+            message: 'failed to login',
         })
     }
 }
@@ -101,7 +101,7 @@ export const getMe = async (req, res) => {
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            err_mes: 'no access',
+            message: 'no access',
         })
     }
 }

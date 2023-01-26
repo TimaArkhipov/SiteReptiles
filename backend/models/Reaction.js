@@ -1,6 +1,7 @@
 import { DataTypes, Model } from 'sequelize';
 
 import User from './User.js';
+import Page from './Page.js';
 import db from '../db.js';
 
 class Reaction extends Model {
@@ -13,11 +14,6 @@ const model = Reaction.init({
     primaryKey: true,
     autoIncrement: true
   },
-  user_id: {
-    type: DataTypes.INTEGER,
-    foreignKey: true,
-    allowNull: false
-  },
   comment: {
     type: DataTypes.STRING,
   },
@@ -28,6 +24,19 @@ const model = Reaction.init({
   sequelize: db,
   tableName: 'reaction',
 });
-export default model;
 
-User.Reactions = User.hasMany(Reaction);
+model.belongsTo(User, 
+    {
+    foreignKey: 'user_id', 
+    allowNull: false
+    }
+);
+
+model.belongsTo(Page, 
+  {
+  foreignKey: 'page_id', 
+  allowNull: false
+  }
+);
+
+export default model;

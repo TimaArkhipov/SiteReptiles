@@ -28,7 +28,7 @@ const model = User.init({
   }
 }, {
   sequelize: db,
-  tableName: 'user',
+  tableName: 'users',
 });
 export default model;
 

@@ -2,22 +2,37 @@
 import express, { json } from 'express';
 // import path from 'path';
 
-import { registerValidation } from './validations.js';
+import { pageValidation, userValidation, reactionValidation } from './validations.js';
 import db, {openConnection, closeConnection} from './db.js';
 import checkAuth from './utils/checkAuth.js';
+
 import * as UserController from './controllers/UserController.js'
+import * as ReactionController from './controllers/ReactionController.js'
+import * as PageController from './controllers/PageController.js'
 
 // const __dirname = path.resolve();
-app.use(express.json())
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3002;
 const app = express();
+app.use(express.json())
 openConnection()
 startApp(PORT);
 
 
 app.post('/auth/login', UserController.login);
-app.post('/auth/register', registerValidation, UserController.register);
+app.post('/auth/register', userValidation, UserController.register);
 app.get('/auth/me', checkAuth, UserController.getMe);
+
+app.get('/reactions', ReactionController.getAll)
+app.get('/reactions/:id', ReactionController.getOne)
+app.post('/reactions', checkAuth, reactionValidation, ReactionController.create)
+app.delete('/reactions/:id', checkAuth, ReactionController.remove)
+app.patch('/reactions/:id', checkAuth, ReactionController.update)
+
+app.get('/pages', PageController.getAll)
+app.get('/pages/:id', PageController.getOne)
+app.post('/pages', pageValidation, PageController.create)
+app.delete('/pages/:id', PageController.remove)
+app.patch('/pages/:id', PageController.update);
 
 async function startApp(port) {
     try {
