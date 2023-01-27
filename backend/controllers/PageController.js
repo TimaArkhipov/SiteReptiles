@@ -67,12 +67,12 @@ export const update = async (req, res) => {
             });
         } else {
             page.update(
-                { where: { id: req.params.id } },
                 {            
                     name: req.body.name,
                     descr: req.body.descr,
                     photo: req.body.photo,
                 },
+                { where: { id: req.params.id } }
                 );
                 
             res.json({

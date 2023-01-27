@@ -1,4 +1,3 @@
-// import { reconstructFieldPath } from 'express-validator/src/select-fields.js';
 import Reaction from '../models/Reaction.js'
 
 export const getAll = async (req, res) => {
@@ -68,12 +67,12 @@ export const update = async (req, res) => {
             });
         } else {
             Reaction.update(
-                { where: { id: req.params.id } },
                 {            
                     page_id: req.body.page_id,
                     comment: req.body.comment,
                     grade: req.body.grade,
                 },
+                { where: { id: req.params.id } }
                 );
                 
             res.json({

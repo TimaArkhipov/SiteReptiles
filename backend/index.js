@@ -11,23 +11,25 @@ import * as ReactionController from './controllers/ReactionController.js'
 import * as PageController from './controllers/PageController.js'
 
 // const __dirname = path.resolve();
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 3001;
 const app = express();
 app.use(express.json())
 openConnection()
 startApp(PORT);
 
-
+// User
 app.post('/auth/login', UserController.login);
 app.post('/auth/register', userValidation, UserController.register);
 app.get('/auth/me', checkAuth, UserController.getMe);
 
+// Reaction
 app.get('/reactions', ReactionController.getAll)
 app.get('/reactions/:id', ReactionController.getOne)
 app.post('/reactions', checkAuth, reactionValidation, ReactionController.create)
 app.delete('/reactions/:id', checkAuth, ReactionController.remove)
 app.patch('/reactions/:id', checkAuth, ReactionController.update)
 
+// Page
 app.get('/pages', PageController.getAll)
 app.get('/pages/:id', PageController.getOne)
 app.post('/pages', pageValidation, PageController.create)

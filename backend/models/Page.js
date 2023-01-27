@@ -1,7 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 
 import Reaction from './Reaction.js';
-import Animal from './Animal.js';
 import db from '../db.js';
 
 class Page extends Model {
@@ -31,5 +30,12 @@ const model = Page.init({
   sequelize: db,
   tableName: 'page',
 });
+
+model.hasMany(Page, 
+    {
+    foreignKey: 'page_id', 
+    allowNull: false
+    }
+  );
 
 export default model;
