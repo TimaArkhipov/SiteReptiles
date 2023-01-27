@@ -29,12 +29,12 @@ app.post('/reactions', checkAuth, reactionValidation, ReactionController.create)
 app.delete('/reactions/:id', checkAuth, ReactionController.remove)
 app.patch('/reactions/:id', checkAuth, ReactionController.update)
 
-// Page
-app.get('/pages', PageController.getAll)
-app.get('/pages/:id', PageController.getOne)
-app.post('/pages', pageValidation, PageController.create)
-app.delete('/pages/:id', PageController.remove)
-app.patch('/pages/:id', PageController.update);
+// Post
+app.get('/posts', PostController.getAll)
+app.get('/posts/:id', PostController.getOne)
+app.post('/posts', postValidation, PostController.create)
+app.delete('/posts/:id', PostController.remove)
+app.patch('/posts/:id', PostController.update);
 
 async function startApp(port) {
     try {

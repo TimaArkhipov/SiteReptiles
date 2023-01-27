@@ -1,5 +1,15 @@
-@import "~materialize-css/dist/css/materialize.min.css";
+/* @import "~materialize-css/dist/css/materialize.min.css"; */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-body {
-    font-family: 'Poppins, 'sans-serif';
-} 
+@layer base {
+    body {        
+        font-family: 'Poppins', 'sans-serif';
+    } 
+}
+/* 
+code {
+    font-family: sourse-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}  */
