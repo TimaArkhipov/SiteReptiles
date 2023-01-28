@@ -4,9 +4,16 @@
 @tailwind utilities;
 
 @layer base {
-    body {        
+    body{    
+        background: #141E30;
+        background: -webkit-linear-gradient(to right, #243855, #141E30);
+        background: linear-gradient(to right, #243B55, #141E30);
         font-family: 'Poppins', 'sans-serif';
-    } 
+        min-height: 100vh;
+    }
+        /* body {        
+        font-family: 'Poppins', 'sans-serif';
+    }  */
 }
 /* 
 code {

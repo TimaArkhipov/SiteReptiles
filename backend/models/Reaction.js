@@ -1,7 +1,7 @@
 import { DataTypes, Model } from 'sequelize';
 
 import User from './User.js';
-import Page from './Page.js';
+import Page from './Post.js';
 import db from '../db.js';
 
 class Reaction extends Model {

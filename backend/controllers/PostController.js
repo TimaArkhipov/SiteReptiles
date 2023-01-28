@@ -1,4 +1,4 @@
-import Page from '../models/Page.js'
+import Post from '../models/Post.js'
 
 export const getAll = async (req, res) => {
     try {

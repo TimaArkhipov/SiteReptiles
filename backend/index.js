@@ -2,13 +2,13 @@
 import express, { json } from 'express';
 // import path from 'path';
 
-import { pageValidation, userValidation, reactionValidation } from './validations.js';
+import { postValidation, userValidation, reactionValidation } from './validations.js';
 import db, {openConnection, closeConnection} from './db.js';
 import checkAuth from './utils/checkAuth.js';
 
 import * as UserController from './controllers/UserController.js'
 import * as ReactionController from './controllers/ReactionController.js'
-import * as PageController from './controllers/PageController.js'
+import * as PostController from './controllers/PostController.js'
 
 // const __dirname = path.resolve();
 const PORT = process.env.PORT || 3001;

@@ -3,11 +3,11 @@ import { DataTypes, Model } from 'sequelize';
 import Reaction from './Reaction.js';
 import db from '../db.js';
 
-class Page extends Model {
+class Post extends Model {
 
 }
 
-const model = Page.init({
+const model = Post.init({
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -31,9 +31,9 @@ const model = Page.init({
   tableName: 'page',
 });
 
-model.hasMany(Page, 
+model.hasMany(Reaction, 
     {
-    foreignKey: 'page_id', 
+    foreignKey: 'rec_id', 
     allowNull: false
     }
   );
