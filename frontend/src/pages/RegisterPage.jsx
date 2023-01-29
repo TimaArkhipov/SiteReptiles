@@ -66,7 +66,7 @@ export const RegisterPage = () => {
                 </button>
             </div>
             <Link to='/login'
-            className="flex justify-center items-center text-xs text-white">          
+            className="flex justify-center items-center text-xs py-2 text-white">          
                 Уже зарегистрированы?  
             </Link>
         </form>
