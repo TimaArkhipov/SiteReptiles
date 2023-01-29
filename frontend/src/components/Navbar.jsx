@@ -19,9 +19,9 @@ export const Navbar = () => {
     }
 
     return (
-        <div className='flex justify-between items-center px-4 py-4'>
+        <div className='flex justify-between items-center px-2 py-4'>
             <span className='flex justify-center items-center w-16 h-8 bg-gray-600 text-xs text-white rounded-sm'>
-                E
+                Перевести
             </span>
 
             {isAuth && (

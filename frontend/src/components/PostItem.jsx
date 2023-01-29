@@ -1,5 +1,6 @@
 import React from "react";
-import { AiFillEye, AiOutlineMessage } from 'react-icons/ai'
+import { Link } from "react-router-dom";
+
 
 export const PostItem = ({ post }) => {
     if (!post) {
@@ -9,39 +10,16 @@ export const PostItem = ({ post }) => {
             </div>
         )
     }
-
     return (
-        <div className="flex flex-col basis-1/4 flex-grow">
-            <div>IMAGE</div>
-            <div className="flex justify-between items-center pt-2">
-                <div className="text-xs text-white opacity-50">
-                    USERNAME                
+        <Link to={`/${post.id}`}>
+            <div className="flex flex-col basis-1/4 flex-grow">               
+                <div className="text-white text-xl">            
+                    {post.name.ru}
                 </div>
-                <div className="text-xs text-white opacity-50">
-                    DATA                
-                </div>
+                <p className="text-white opacity-60 text-xs pt-4">            
+                    {post.descr.ru}
+                </p>            
             </div>
-            <div className="text-white text-xl">            
-                {post.name.ru}
-                {/* POST TITLE */}
-            </div>
-            <p className="text-white opacity-60 text-xs pt-4">            
-                {post.descr.ru}
-                {/* POST TEXT */}
-            </p>
-
-            <div className="flex gap-3 items-center mt-2">
-                <button className="flex items-center justify-center gap-2 text-xs text-white opacity-50">
-                    <AiFillEye /> <span>                    
-                        0
-                        </span>
-                </button>
-                <button className="flex items-center justify-center gap-2 text-xs text-white opacity-50">
-                    <AiOutlineMessage /> <span>                    
-                        0
-                    </span>
-                </button>
-            </div>
-        </div>
+        </Link>
     )
 }
