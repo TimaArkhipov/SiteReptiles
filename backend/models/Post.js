@@ -31,11 +31,11 @@ const model = Post.init({
   tableName: 'page',
 });
 
-model.hasMany(Reaction, 
-    {
-    foreignKey: 'rec_id', 
-    allowNull: false
-    }
-  );
+// model.hasMany(Reaction, 
+//     {
+//     foreignKey: 'rec_id', 
+//     allowNull: false
+//     }
+//   );
 
 export default model;

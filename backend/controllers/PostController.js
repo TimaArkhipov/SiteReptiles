@@ -2,44 +2,49 @@ import Post from '../models/Post.js'
 
 export const getAll = async (req, res) => {
     try {
-        const pages = await Page.findAll();
+        const posts = await Post.findAll();
+        //const popularPosts = await Post.find().sort('-views')
+
+        if(!posts){
+            return res.json({message: 'Постов нет.'})
+        }
         
-        res.json(pages);
+        res.json(posts); //popularPosts
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            message: 'failed to get pages',
+            message: 'failed to get posts',
         })
     }
 }
 
 export const getOne = async (req, res) => {
     try {
-        const page = await Page.findByPk(req.params.id);
+        const post = await Post.findByPk(req.params.id);
 
-        if (!page) {
+        if (!post) {
             return res.status(404).json({
-                message: 'page not found',
+                message: 'post not found',
             });
         }
-        res.status(200).json(page);
+        res.status(200).json(post);
     } catch (err) {
         res.status(500).json({
-            message: 'failed to get a page',
+            message: 'failed to get a post',
         });
     }
 }
 
 export const remove = async (req, res) => {
     try {
-        const page = await Page.findByPk(req.params.id);
+        const post = await Post.findByPk(req.params.id);
 
-        if (!page) {
+        if (!post) {
             return res.status(404).json({
-                message: 'page not found',
+                message: 'post not found',
             });
         } else {
-            page.destroy({
+            post.destroy({
                 where: {
                     id: req.params.id
                 }
@@ -52,21 +57,21 @@ export const remove = async (req, res) => {
         } catch (err) {
             console.log(err);
             res.status(500).json({
-                message: 'failed to remove a page',
+                message: 'failed to remove a post',
             });
         }
 }
 
 export const update = async (req, res) => {
     try {
-        const page = await Page.findByPk(req.params.id);
+        const post = await Post.findByPk(req.params.id);
         
-        if (!page) {
+        if (!post) {
             return res.status(404).json({
-                message: 'page not found',
+                message: 'post not found',
             });
         } else {
-            page.update(
+            post.update(
                 {            
                     name: req.body.name,
                     descr: req.body.descr,
@@ -82,26 +87,26 @@ export const update = async (req, res) => {
         } catch (err) {
             console.log(err);
             res.status(500).json({
-                message: 'failed to update a page',
+                message: 'failed to update a post',
             });
         }
 }
 
 export const create = async (req, res) => {
     try {
-        const doc = new Page({
+        const doc = new Post({
             name: req.body.name,
             descr: req.body.descr,
             photo: req.body.photo,
         });
-        const page = await doc.save();
+        const post = await doc.save();
         
-        res.json(page);
+        res.json(post);
 
     } catch (err) {
         console.log(err);
         res.status(500).json({
-            message: 'failed to create a page',
+            message: 'failed to create a post',
         })
     }
 }

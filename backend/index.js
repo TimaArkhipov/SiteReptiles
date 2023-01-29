@@ -1,5 +1,7 @@
 // import Sequelize from "sequelize";
 import express, { json } from 'express';
+import cors from 'cors';
+import fileUpload from 'express-fileupload';
 // import path from 'path';
 
 import { postValidation, userValidation, reactionValidation } from './validations.js';
@@ -13,6 +15,9 @@ import * as PostController from './controllers/PostController.js'
 // const __dirname = path.resolve();
 const PORT = process.env.PORT || 3001;
 const app = express();
+app.use(cors())
+app.use(fileUpload())
+//app.use(express.static('')) Указать откуда загружать картинки
 app.use(express.json())
 openConnection()
 startApp(PORT);
@@ -48,6 +53,8 @@ async function startApp(port) {
         console.log(e);
     }
 }
+
+
 
 // app.get('/', (req, res) => {
 //     res.send('<h1>Hello back</h1>');

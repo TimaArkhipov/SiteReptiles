@@ -10,17 +10,30 @@ export const register = async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json(errors.array());
-        } 
+        }
+
+        const email = req.body.email       
+
+        //const isUsed = await User.findOne({ email })
+        const isUsed = await User.findOne({ where: { email } });
+
+        if (isUsed) {
+            return res.json({
+                message: 'Данный email уже занят.',
+            })
+        }
+
+         
         
         const p = req.body.password;
         const salt = await bcrypt.genSalt(10);
         const passwordHash = bcrypt.hashSync(p, salt);
 
         const doc = new User({
-            email: req.body.email,
+            email,            
             password: passwordHash,
         });
-
+        
         const user = await doc.save();
 
         const token = jwt.sign(
@@ -35,7 +48,12 @@ export const register = async (req, res) => {
 
         const {password, ... userData} = user.dataValues;
 
-        res.json(userData);
+        //res.json(userData);
+        res.json({
+            doc,
+            token,
+            message: 'Регистрация успешно пройдена.',
+        });
     } catch (err) {
         console.log(err);
         res.status(500).json({
@@ -74,9 +92,15 @@ export const login = async (req, res) => {
 
         const {password, ... userData} = user.dataValues;
 
-        res.status(200).json({
-            ... userData,
+        // res.status(200).json({
+        //     ... userData,
+        //     token,
+        //     message: 'Вы вошли в систему.',
+        // });
+        res.json({
+            user,
             token,
+            message: 'Вы вошли в систему.',
         });
     } catch (err) {
         console.log(err);
@@ -95,9 +119,21 @@ export const getMe = async (req, res) => {
             })
         }
 
+        const token = jwt.sign(
+            {
+                _id: user.id,
+            }, 
+            'se72jkpq.',
+            {
+                expiresIn: '30d',
+            }
+        );
+
         const {password, ... userData} = user.dataValues;
 
-        res.json(userData);
+        res.json({
+            userData,
+            token,});
     } catch (err) {
         console.log(err);
         res.status(500).json({
