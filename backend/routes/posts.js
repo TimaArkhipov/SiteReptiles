@@ -1,6 +1,8 @@
 import { Router } from "express";
-import router from "./servers";
 import { getAll } from "../controllers/PostController";
+
+const router = new Router()
+
 
 //Get all posts
 router.get('/', getAll)

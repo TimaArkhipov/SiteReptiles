@@ -22,7 +22,8 @@ const initialState = {
 export const getAllPosts = createAsyncThunk('post/getAllPosts', async () => {
     try {
         const { data } = await axios.get('/posts')
-        return data
+        console.log(data + ' После axios.get')
+        return data;
     } catch (error) {
         console.log(error)
     }

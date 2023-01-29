@@ -9,12 +9,14 @@ export const MainPage = () => {
 
     const dispatch = useDispatch()
     const posts = useSelector((state) => state.post) //, popularPosts
+    
 
     useEffect(() => {
         dispatch(getAllPosts())
-    }, [dispatch]);
+    }, [dispatch])
 
-    // if(!posts.length){
+    console.log(posts + ' После селектора')
+    // if(!posts.length()){
     //     return (
     //         <div className='text-xl text-center text-white py-10'>
     //             Постов не существует.
@@ -26,9 +28,10 @@ export const MainPage = () => {
         <div className='max-w-[900px] mx-auto py-10'>
             <div className="flex justify-between gap-8">
                 <div className="flex flex-col gap-10 basis-4/5">
-                    {posts?.map((post, idx) => (
-                        <PostItem key={idx} post={post}/> 
+                    {posts?.map((idx, post) => (
+                        <PostItem key={idx} post={post} /> 
                     ))}
+                    <PostItem />
                                        
                 </div>
                 <div className="basis-1/5">
