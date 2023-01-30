@@ -2,7 +2,7 @@
 import express, { json } from 'express';
 import cors from 'cors';
 import fileUpload from 'express-fileupload';
-// import path from 'path';
+import path from 'path';
 
 import { postValidation, userValidation, reactionValidation } from './validations.js';
 import db, {openConnection, closeConnection} from './db.js';
@@ -12,13 +12,34 @@ import * as UserController from './controllers/UserController.js'
 import * as ReactionController from './controllers/ReactionController.js'
 import * as PostController from './controllers/PostController.js'
 
-// const __dirname = path.resolve();
+
+
+// var app = express();
+
+const __dirname = path.resolve();
+var dir = path.join(__dirname, 'uploads');
+
+
 const PORT = process.env.PORT || 3001;
 const app = express();
+// app.use(express.static(dir));
+
+// const storage = multer.diskStorage({
+//     destination: (_, _, cb) => {
+//         cb(null, 'uploads');
+//     },
+//     filename: (_, file, cb) => {
+//         cb(null, file.originalname);
+//     }
+// });
+
+// const upload = multer({ storage }); 
+
 app.use(cors())
 app.use(fileUpload())
-//app.use(express.static('')) Указать откуда загружать картинки
+// app.use(express.static('')) //Указать откуда загружать картинки
 app.use(express.json())
+app.use('/uploads', express.static('uploads'));
 openConnection()
 startApp(PORT);
 
@@ -26,6 +47,13 @@ startApp(PORT);
 app.post('/auth/login', UserController.login);
 app.post('/auth/register', userValidation, UserController.register);
 app.get('/auth/me', checkAuth, UserController.getMe);
+
+// //File
+// app.post('/upload', upload.single('image'), (req, res) => {
+//     res.json({
+//         url: `/uploads/${req.file.originalname}`,
+//     });
+// })
 
 // Reaction
 app.get('/reactions', ReactionController.getAll)
@@ -53,22 +81,3 @@ async function startApp(port) {
         console.log(e);
     }
 }
-
-
-
-// app.get('/', (req, res) => {
-//     res.send('<h1>Hello back</h1>');
-//     // res.render('index', { title: 'Main page' });
-//     // res.json({
-//     //     message: "Hello from backend express.js"
-//     // })
-// });
-
-// app.get('/db', (req, res) => {
-//     res.send(users);
-//     // res.json(users);
-//     // res.render('index', { title: 'Main page' });
-//     // res.json({
-//     //     message: "Hello from backend express.js"
-//     // })
-// });
