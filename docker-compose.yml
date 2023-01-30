@@ -1,0 +1,34 @@
+version: '3.8'
+
+volumes:
+  database:
+
+services:  
+  api:    
+    build: ./backend    
+    container_name: api_backend    
+    ports:      
+      - '3002:3002'    
+    volumes:     
+      - ./backend:/SiteReptiles
+      - ./SiteReptiles/node_modules
+
+  client:
+    build: ./frontend
+    container_name: client_frontend
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./frontend:/SiteReptiles
+      - ./SiteReptiles/node_modules
+
+  # Postgres. Берем готовый официальный образ
+  database:
+    image: postgres:14-alpine
+    # Вот собственно тут и указывается, какие порты будут видны на вашей локали
+    ports:
+      - 5432:5432
+    # Там выше в volumes указывали набор volumes. Используем вольюм database, чтобы хранить БД
+    volumes:
+      - database:/var/lib/postgresql/data
+    restart: always

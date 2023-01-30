@@ -20,9 +20,9 @@ export const Navbar = () => {
 
     return (
         <div className='flex justify-between items-center px-2 py-4'>
-            <span className='flex justify-center items-center w-16 h-8 bg-gray-600 text-xs text-white rounded-sm'>
+            <button className='flex justify-center items-center w-16 h-8 bg-gray-600 text-xs text-white rounded-sm'>
                 Перевести
-            </span>
+            </button>
 
             {isAuth && (
                 <ul className='flex gap-8'>
@@ -47,10 +47,10 @@ export const Navbar = () => {
                                 isActive ? activeStyles : undefined
                             }
                         >
-                            Мои посты
+                            Профиль
                         </NavLink>
                     </li>
-                    <li>
+                    {/* <li>
                         <NavLink
                             to={'/new'}
                             href='/'
@@ -61,7 +61,7 @@ export const Navbar = () => {
                         >
                             Добавить пост
                         </NavLink>
-                    </li>
+                    </li> */}
                 </ul>
             )}
 
