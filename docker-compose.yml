@@ -8,10 +8,9 @@ services:
     build: ./backend    
     container_name: api_backend    
     ports:      
-      - '3002:3002'    
+      - '3001:3001'    
     volumes:     
-      - ./backend:/SiteReptiles
-      - ./SiteReptiles/node_modules
+      - ./backend:/app
 
   client:
     build: ./frontend
@@ -19,8 +18,7 @@ services:
     ports:
       - '3000:3000'
     volumes:
-      - ./frontend:/SiteReptiles
-      - ./SiteReptiles/node_modules
+      - ./frontend:/app
 
   # Postgres. Берем готовый официальный образ
   database:

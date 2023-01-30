@@ -1,17 +1,17 @@
 import Post from '../models/Post.js'
-import multer from 'multer';
+// import multer from 'multer';
 
 
-const storage = multer.diskStorage({
-    destination: (_, __, cb) => {
-        cb(null, 'uploads');
-    },
-    filename: (_, file, cb) => {
-        cb(null, file.originalname);
-    }
-});
+// const storage = multer.diskStorage({
+//     destination: (_, __, cb) => {
+//         cb(null, 'uploads');
+//     },
+//     filename: (_, file, cb) => {
+//         cb(null, file.originalname);
+//     }
+// });
 
-const upload = multer({ storage }); 
+// const upload = multer({ storage }); 
 
 
 
