@@ -10,7 +10,7 @@ export const PostPage = () => {
 
     const fetchPost = useCallback(async () =>{
         const { data } = await axios.get(`/posts/${params.id}`)
-        // console.log("data = ", data);
+        console.log("data = ", data);
         setPost(data)        
     }, [params.id])    
 
@@ -18,7 +18,7 @@ export const PostPage = () => {
        fetchPost()       
     }, [fetchPost]);
 
-    // console.log("post = ", post);
+    // console.log("post.photo = ", post.photo);
     // console.log("params = ", params);
     
 
@@ -40,7 +40,7 @@ export const PostPage = () => {
                     >
                         {post?.photo && (
                             <img
-                                src={`http://localhost:3001/${post.photo}`}
+                                src={`http://localhost:3001${post.photo}`}
                                 alt='img'
                                 className='object-cover w-full'
                             />

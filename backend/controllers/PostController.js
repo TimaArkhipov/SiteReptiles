@@ -1,4 +1,19 @@
 import Post from '../models/Post.js'
+import multer from 'multer';
+
+
+const storage = multer.diskStorage({
+    destination: (_, __, cb) => {
+        cb(null, 'uploads');
+    },
+    filename: (_, file, cb) => {
+        cb(null, file.originalname);
+    }
+});
+
+const upload = multer({ storage }); 
+
+
 
 export const getAll = async (req, res) => {
     try {
@@ -92,12 +107,15 @@ export const update = async (req, res) => {
         }
 }
 
+// export const create = (upload.single('image'), async (req, res) => {
 export const create = async (req, res) => {
     try {
+        // const photo_str = "/images/" + (req.body.photo)
+        // console.log(photo_str)
         const doc = new Post({
             name: req.body.name,
             descr: req.body.descr,
-            photo: req.body.photo,
+            photo: `/images/${req.body.photo}`,
         });
         const post = await doc.save();
         
@@ -109,4 +127,4 @@ export const create = async (req, res) => {
             message: 'failed to create a post',
         })
     }
-}
+};
